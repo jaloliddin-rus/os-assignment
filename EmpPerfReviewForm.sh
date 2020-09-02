@@ -1,10 +1,11 @@
 #!/bin/bash
-echo "Employee Validation Form"
-echo "------------------------------"
+#author: Jaloliddin
+echo "Login Screen"
+echo "=========================="
 echo "Email: "
-read email
+read lemail
 echo "Password: "
-read -s password
+read -s lpassword
 INPUT="login.txt"
 OLDIFS=$IFS
 IFS=,
@@ -25,5 +26,3 @@ fi
 done < $INPUT
 echo "user does not exist"
 IFS=$OLDIFS
-
-
