@@ -20,7 +20,7 @@ done <$empDB
 echo -n "Press (n) to continue to the Employee Performance Review Form or (q) to quit from the prompt and return to Human Resources Management Menu: "
 read choice
 case $choice in
-n) ./EmpPerfReviewForm.sh ;;
-q) ./HRMenu.sh ;;
-*) echo -n "Invalid Choice!" ;;
+	n) ./EmpPerfReviewForm.sh ;;
+	q) ./HRMenu.sh ;;
+	*) echo -n "Invalid Choice!" ;;
 esac
