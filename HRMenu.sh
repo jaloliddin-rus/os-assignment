@@ -11,7 +11,7 @@ echo
 echo -n "Please enter your choice: "; 
 read choice
 case "$choice" in
-[eE]) ./AddNewEmp;;
+[eE]) ./AddNewEmpForm.sh;;
 [kK]) ./AddNewKPI;;
 [rR]) ./EmpPerfReviewForm.sh;;
 [qQ]) exit;;
