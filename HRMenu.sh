@@ -8,12 +8,12 @@ echo "R - Performance Review"
 echo
 echo "Q - Quit / Exit from program"
 echo
-echo -n "Please enter your choice: "; 
+echo -n "Please enter your choice: "
 read choice
 case "$choice" in
-[eE]) ./AddNewEmpForm.sh;;
-[kK]) ./AddNewKPI;;
-[rR]) ./EmpPerfReviewForm.sh;;
-[qQ]) exit;;
-*) echo "Invalid Choice! Try Again"
+[eE]) ./AddNewEmpForm.sh ;;
+[kK]) ./AddNewKPI ;;
+[rR]) ./EmpPerfReviewForm.sh ;;
+[qQ]) exit ;;
+*) echo "Invalid Choice! Try Again" ;;
 esac
