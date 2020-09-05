@@ -1,11 +1,10 @@
 #!/bin/bash
 #author: Jaloliddin
 kpiDB="KPI.txt"
-echo $1
-echo $2
-echo $3
-echo $4
-filename= "$1KPIResult"
+ICNo=$1
+empName=$2
+startDate=$3
+endDate=$4
 echo "Employee Performance Review Form"
 echo "------------------------"
 echo -n "Please enter the KPI Code: "
@@ -14,6 +13,8 @@ read kpi
 while IFS=: read -r kpiCode kpiCriteria kpiDesc; do
     if [[ $kpi == $kpiCode ]]; then
         echo "KPI - Key Performance Indicator: $kpiCriteria"
+    else
+        exec EmpPerfReviewForm.sh
     fi
 done <$kpiDB
 
