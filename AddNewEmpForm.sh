@@ -34,7 +34,7 @@ while [ "$loop" = "y" ]; do
         read choiceMenu
         case "$choiceMenu" in
         [qQ]) ./HRMenu.sh ;;
-        *) echo "Invalid!" ;;
+        *) echo "Invalid Choice!" ;;
         esac
     fi
 done
