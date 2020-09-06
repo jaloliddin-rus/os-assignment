@@ -6,6 +6,8 @@ empDB="Employee.txt"
 #constants
 declare -r TRUE=0
 declare -r FALSE=1
+RED='\033[0;31m'
+NC='\033[0m' # No Color
 
 isValidDate() {
 	local date="$1"
@@ -21,19 +23,21 @@ isValidDate() {
 
 clear
 
-echo "Employee Validation Form"
-echo "------------------------"
-test1=$FALSE
-test2=$FALSE
-while [[ $test1 -eq 1 || $test2 -eq 1 ]]; do
-	echo -n "Please enter the Review Period (From mm-yyyy To mm-yyyy): "
+printf "%-30sEmployee Validation Form\n"
+printf "%-30s-------------------------\n"
+startDateValid=$FALSE
+endDateValid=$FALSE
+while [[ $startDateValid -eq 1 || $endDateValid -eq 1 ]]; do
+	echo "Please enter the Review Period (From mm-yyyy To mm-yyyy)"
+	printf 'From: '
 	read startDate
-	test1=$(isValidDate "$startDate")
+	startDateValid=$(isValidDate "$startDate")
+	printf 'To: '
 	read endDate
-	test2=$(isValidDate "$endDate")
+	endDateValid=$(isValidDate "$endDate")
 
-	if [[ $test1 -eq 1 || $test2 -eq 1 ]]; then
-		echo "Invalid Date!"
+	if [[ $startDateValid -eq 1 || $endDateValid -eq 1 ]]; then
+		printf "${RED}Invalid Date!${NC}\n"
 	fi
 done
 
