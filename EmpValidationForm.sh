@@ -19,6 +19,8 @@ isValidDate() {
 	fi
 }
 
+clear
+
 echo "Employee Validation Form"
 echo "------------------------"
 test1=$FALSE
