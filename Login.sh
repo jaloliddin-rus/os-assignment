@@ -1,28 +1,26 @@
 #!/bin/bash
-. ./file_permissions.sh
-echo "Employee Validation Form"
-echo "------------------------------"
-echo "Email: "
+#./file_permissions.sh
+
+#file
+loginDB="login.txt"
+
+echo "Welcome to the HR Management Login Screen!"
+echo
+echo -n "Email (test@test.com) : "
 read lemail
-echo "Password: "
-read -s lpassword
-INPUT="login.txt"
-OLDIFS=$IFS
-IFS=,
-[ ! -f $INPUT ] && {
-	echo "$INPUT file not found"
-	exit 99
-}
-while read -r email password dept pos; do
-	if [[ $lemail = $email ]]; then
-		if [[ $lpassword = $password ]]; then
-			echo "login successful"
-			echo "$email works in $dept and he or she is a $pos"
-			break
+echo -n "Password (          ) : "
+read lpassword
+
+if [ -n "$lemail" ] && [ -n "lpassword" ]; then
+	while IFS=: read -r email password department position; do
+		if [[ $lemail == $email ]]; then
+			if [[ $lpassword == $password ]]; then
+				echo "Successful Login"
+			fi
 		else
-			echo "login failed"
+			echo "Wrong email or password!"
 		fi
-	fi
-done <$INPUT
-echo "user does not exist"
-IFS=$OLDIFS
+	done <$loginDB
+else
+	echo "Incomplete Input!"
+fi
