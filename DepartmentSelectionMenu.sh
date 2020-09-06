@@ -25,4 +25,3 @@ case "$choice" in
 [qQ]) ./HRMenu.sh ;;
 *) echo -n "Invalid Choice!" ;;
 esac
-

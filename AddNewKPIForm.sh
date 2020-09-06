@@ -1,27 +1,27 @@
 #!/bin/bash
 #author: Harrsimran Kaur
-loop=y
 
-while [ "$loop" = "y" ]; do
-echo "Add New Key Performance Indicator (KPI) Form"
-echo "============================================"
-echo 
-echo -n "KPI Code (Auto generated) : "
-echo -n "KPI Evaluation Criteria   : "
-read evaluationCriteriaKPI
-echo -n "Description               : "
-read descriptionKPI
-echo
+kpiDB="KPI.txt"
+last_line=$(wc -l <$kpiDB)
+current_line=0
+if [[ -s "$kpiDB" ]]; then
+    while IFS=: read -r kpiCode kpiEvaluation kpiDescription; do
 
-echo "$evaluationCriteriaKPI:$descriptionKPI" >> KPI.txt
-echo -n "Add Another KPI? (y)es or (q)uit : "
-read loop
-if [[$loop != "y"]] && [[$loop = "q" ]]; then
-echo "Press (q) to return to Human Resource Management Menu"
-read choice
-case $choice in
-[qQ]) ./HRMenu.sh ;;
-*) echo "Invalid Choice!" ;;
-esac
+        if [[ $current_line -eq $last_line ]]; then
+
+            kpiNumber=${kpiCode##*\_}
+            echo $kpiNumber
+
+            kpiNumber=$(($kpiNumber + 1))
+            echo $kpiNumber
+            kpiCode=$(printf "KPI_%02d" "$kpiNumber")
+
+        else
+            kpiCode="KPI_01"
+
+        fi
+        current_line=$(($current_line + 1))
+    done <$kpiDB
 fi
-done
+
+echo $kpiCode
