@@ -16,6 +16,7 @@ if [[ $counter -lt 10 ]]; then
 fi
 
 while [ "$loop" = "y" ]; do
+    clear
     echo "Add New Key Performance Indicator (KPI) Form"
     echo "============================================"
     echo "KPI Code (Auto Generated) : $kpiCode"

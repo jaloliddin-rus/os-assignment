@@ -16,5 +16,5 @@ case "$choice" in
 [kK]) ./AddNewKPIForm.sh ;;
 [rR]) ./EmpPerfReviewForm.sh ;;
 [qQ]) exit ;;
-*) echo -n "Invalid Choice!" ;;
+*) echo "Invalid Choice!" ;;
 esac

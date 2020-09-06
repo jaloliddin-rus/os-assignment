@@ -23,5 +23,5 @@ case "$choice" in
 [aA]) ./AddNewEmpForm.sh 'AF' ;;
 [iI]) ./AddNewEmpForm.sh 'IT' ;;
 [qQ]) ./HRMenu.sh ;;
-*) echo -n "Invalid Choice!" ;;
+*) echo "Invalid Choice!" ;;
 esac

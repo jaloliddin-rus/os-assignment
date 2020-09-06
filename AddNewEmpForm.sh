@@ -6,6 +6,7 @@ empDepartment=$1
 loop=y
 
 while [ "$loop" = "y" ]; do
+    clear
     echo "Add New Employee Form"
     echo "====================="
     echo
@@ -33,7 +34,7 @@ while [ "$loop" = "y" ]; do
     echo -n "Add Another Employee? (y)es or (q)uit : "
     read loop
     if [[ $loop != "y" ]] && [[ $loop = "q" ]]; then
-        echo "Press (q) to return to Human Resource Management Menu : "
+        echo -n "Press (q) to return to Human Resource Management Menu : "
         read choiceMenu
         case "$choiceMenu" in
         [qQ]) ./HRMenu.sh ;;
