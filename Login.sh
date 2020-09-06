@@ -1,26 +1,27 @@
 #!/bin/bash
-#./file_permissions.sh
-
-#file
-loginDB="login.txt"
-
-echo "Welcome to the HR Management Login Screen!"
-echo
-echo -n "Email (test@test.com) : "
+. ./file_permission.sh
+clear
+echo "Employee Validation Form"
+echo "------------------------------"
+echo -n "Email: "
 read lemail
-echo -n "Password (          ) : "
-read lpassword
-
-if [ -n "$lemail" ] && [ -n "lpassword" ]; then
-	while IFS=: read -r email password department position; do
-		if [[ $lemail == $email ]]; then
-			if [[ $lpassword == $password ]]; then
-				echo "Successful Login"
-			fi
-		else
-			echo "Wrong email or password!"
-		fi
-	done <$loginDB
-else
-	echo "Incomplete Input!"
-fi
+echo -n "Password: "
+read -s lpassword
+INPUT="login.txt"
+[ ! -f $INPUT ] && {
+	echo "$INPUT file not found"
+	exit 99
+}
+while IFS=, read -r email password dept pos; do
+	if [[ $lemail = $email && $lpassword = $password ]]; then
+		echo "Login Successful"
+		read -n 1 -s -r -p "Press any key to continue"
+		./HRMenu.sh
+		break
+	else
+		echo "Login Failed"
+		read -n 1 -s -r -p "Press any key to continue"
+		./Login.sh
+		break
+	fi
+done <$INPUT
