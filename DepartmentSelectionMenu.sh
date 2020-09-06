@@ -16,13 +16,13 @@ echo
 echo -n "Please select a choice : "
 read choice
 case "$choice" in
-[pP]) ./AddNewEmpForm.sh
-[uU]) ./AddNewEmpForm.sh
-[sS]) ./AddNewEmpForm.sh
-[hH]) ./AddNewEmpForm.sh
-[aA]) ./AddNewEmpForm.sh
-[iI]) ./AddNewEmpForm.sh
-[qQ]) ./HRMenu.sh
-*) echo "Invalid Choice!"
+[pP]) ./AddNewEmpForm.sh 'PD' ;;
+[uU]) ./AddNewEmpForm.sh 'PU' ;;
+[sS]) ./AddNewEmpForm.sh 'SM' ;;
+[hH]) ./AddNewEmpForm.sh 'HR' ;;
+[aA]) ./AddNewEmpForm.sh 'AF' ;;
+[iI]) ./AddNewEmpForm.sh 'IT' ;;
+[qQ]) ./HRMenu.sh ;;
+*) echo -n "Invalid Choice!" ;;
 esac
 

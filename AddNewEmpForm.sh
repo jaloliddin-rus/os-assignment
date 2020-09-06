@@ -1,5 +1,8 @@
 #!/bin/bash
 #author: Harrsimran Kaur
+#Argument from DepartmentSelectionMenu script
+empDepartment=$1
+
 loop=y
 
 while [ "$loop" = "y" ]; do
@@ -23,7 +26,7 @@ while [ "$loop" = "y" ]; do
     echo -n "Joined Date : "
     read empJoinedDate
     if [ -n "$empICNo" ] && [ -n "$empName" ] && [ -n "$empContactNo" ] && [ -n "$empEmail" ] && [ -n "$empGender" ] && [ -n "$empBirthDate" ] && [ -n "$empJobTitle" ] && [ -n "$empJoinedDate" ]; then
-        echo "$empICNo:$empName:$empContactNo:$empEmail:$empGender:$empBirthDate:$empJobTitle:$empJoinedDate" >>Employee.txt
+        echo "$empDepartment:$empICNo:$empName:$empContactNo:$empEmail:$empGender:$empBirthDate:$empJobTitle:$empJoinedDate" >>Employee.txt
     else
         echo "Incomplete Input!"
     fi

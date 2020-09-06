@@ -12,9 +12,9 @@ echo
 echo -n "Please enter your choice: "
 read choice
 case "$choice" in
-[eE]) ./AddNewEmpForm.sh ;;
+[eE]) ./DepartmentSelectionMenu.sh ;;
 [kK]) ./AddNewKPIForm.sh ;;
 [rR]) ./EmpPerfReviewForm.sh ;;
 [qQ]) exit ;;
-*) echo "Invalid Choice! Try Again" ;;
+*) echo -n "Invalid Choice!" ;;
 esac
