@@ -1,27 +1,17 @@
 #!/bin/bash
 #author: Harrsimran Kaur
 
+clear
 kpiDB="KPI.txt"
-last_line=$(wc -l <$kpiDB)
-current_line=0
+counter=1
 if [[ -s "$kpiDB" ]]; then
     while IFS=: read -r kpiCode kpiEvaluation kpiDescription; do
-
-        if [[ $current_line -eq $last_line ]]; then
-
-            kpiNumber=${kpiCode##*\_}
-            echo $kpiNumber
-
-            kpiNumber=$(($kpiNumber + 1))
-            echo $kpiNumber
-            kpiCode=$(printf "KPI_%02d" "$kpiNumber")
-
-        else
-            kpiCode="KPI_01"
-
-        fi
-        current_line=$(($current_line + 1))
+        counter=$(($counter + 1))
+        echo $counter
     done <$kpiDB
 fi
 
-echo $kpiCode
+if [[ $counter -lt 10 ]]; then
+    kpiCode=$(printf "KPI_%02d" "$counter")
+    echo $kpiCode
+fi

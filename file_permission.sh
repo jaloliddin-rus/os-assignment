@@ -1,0 +1,6 @@
+chmod +rx "AddNewEmpForm.sh"
+chmod +rx "AddNewKPIForm.sh"
+chmod +rx "DepartmentSelectionMenu.sh"
+chmod +rx "EmpPerfReviewForm.sh"
+chmod +rx "EmpValidationForm.sh"
+chmod +rx "HRMenu.sh"

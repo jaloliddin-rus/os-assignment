@@ -1,4 +1,5 @@
 #!/bin/bash
+. ./file_permissions.sh
 echo "Employee Validation Form"
 echo "------------------------------"
 echo "Email: "
