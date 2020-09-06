@@ -29,7 +29,7 @@ printf '%s======================================================================
 while [ "$loop" = "y" ]; do
     clear
     echo "Employee Performance Review Form"
-    echo "------------------------"
+    echo "--------------------------------"
     echo -n "Please enter the KPI Code: "
     read kpi
 
@@ -62,7 +62,8 @@ if [[ $loop = "b" ]]; then
     else
         printf '%s\n' >>$filename.txt
         printf 'Average Performance Rating Score: %s\n' "$average" >>$filename.txt
-        if [[ $average -ge 8 || $average -le 10 ]]; then
+
+        if [[ $average -ge 8 && $average -le 10 ]]; then
             printf '%s\n' >>$filename.txt
             printf 'Overall staff performacne: Outstanding' >>$filename.txt
         elif [[ $average -ge 6 && $average -le 7 ]]; then
