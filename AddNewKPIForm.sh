@@ -1,5 +1,6 @@
 #!/bin/bash
 #author: Harrsimran Kaur
+clear
 loop=y
 kpiDB="KPI.txt"
 counter=1

@@ -1,5 +1,6 @@
 #!/bin/bash
 #author: Harrsimran Kaur
+clear
 
 echo "Department Selection Menu"
 echo "========================="

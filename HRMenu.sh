@@ -1,5 +1,6 @@
 #!/bin/bash
 #Author: Harrsimran Kaur
+clear
 echo "Human Resource Management Menu"
 echo "=============================="
 echo
@@ -14,7 +15,7 @@ read choice
 case "$choice" in
 [eE]) ./DepartmentSelectionMenu.sh ;;
 [kK]) ./AddNewKPIForm.sh ;;
-[rR]) ./EmpPerfReviewForm.sh ;;
+[rR]) ./EmpValidationForm.sh ;;
 [qQ]) exit ;;
 *) echo "Invalid Choice!" ;;
 esac

@@ -1,5 +1,6 @@
 #!/bin/bash
 #author: Harrsimran Kaur
+clear
 #Argument from DepartmentSelectionMenu script
 empDepartment=$1
 

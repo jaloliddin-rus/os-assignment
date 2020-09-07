@@ -1,5 +1,6 @@
 #!/bin/bash
 #Author: Jaloliddin
+clear
 
 empDB="Employee.txt"
 
@@ -8,8 +9,8 @@ declare -r TRUE=0
 declare -r FALSE=1
 
 #text color
-RED='\033[0;31m' #red
-NC='\033[0m' # default
+RED='\033[0;31m'   #red
+NC='\033[0m'       #default
 GREEN='\033[0;32m' #green
 
 #variables & declarations
@@ -43,7 +44,6 @@ dateComparison() {
 	fi
 }
 
-clear
 
 printf "%-30sEmployee Validation Form\n"
 printf "%-30s-------------------------\n"
