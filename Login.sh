@@ -4,12 +4,12 @@
 . ./file_permission.sh
 
 #variable
-isSuccess=0
 INPUT="login.txt"
 declare -r TRUE=0
 declare -r FALSE=1
 emailValidation=$FALSE
 passwordValidation=$FALSE
+isSuccess=$FALSE
 RED='\033[0;31m' #red color text
 NC='\033[0m'     # default color
 
@@ -46,28 +46,40 @@ clear
 
 echo "Welcome to the HR Management Login Screen!"
 echo "------------------------------------------"
-while [[ $emailValidation -eq 1 || $passwordValidation -eq 1 ]]; do
-	printf "Email: "
-	read lemail
-	emailValidation=$(isEmailValid "$lemail")
 
-	printf "Password: "
-	read -s lpassword
-	passwordValidation=$(passwordLengthCheck "$lpassword")
+while [[ $isSuccess -eq $FALSE ]]; do
+	while [[ $emailValidation -eq 1 || $passwordValidation -eq 1 ]]; do
+		printf "Email: "
+		read lemail
+		emailValidation=$(isEmailValid "$lemail")
 
-	if [[ $emailValidation -eq 1 ]]; then
-		printf "${RED}\nInvalid Email Format!${NC}\n"
-	fi
+		printf "Password: "
+		read -s lpassword
+		passwordValidation=$(passwordLengthCheck "$lpassword")
 
-	if [[ $passwordValidation -eq 1 ]]; then
-		printf "${RED}\nPassword must be 8 characters or shorter!${NC}\n"
+		if [[ $emailValidation -eq 1 ]]; then
+			printf "${RED}\nInvalid Email Format!${NC}\n"
+		fi
+
+		if [[ $passwordValidation -eq 1 ]]; then
+			printf "${RED}\nPassword must be 8 characters or shorter!${NC}\n"
+		fi
+	done
+
+	IFS='|'
+	while read -r email password dept pos; do
+		if [[ "$lemail" == "$email" ]]; then
+			if [[ "$lpassword" == "$password" ]]; then
+				isSuccess=$TRUE
+			fi
+		fi
+	done <"$INPUT"
+
+	if [[ $isSuccess -eq $TRUE ]]; then
+		./HRMenu.sh
+	else
+		emailValidation=$FALSE
+		passwordValidation=$FALSE
+		printf "\n${RED}Login Failed!${NC}\n"
 	fi
 done
-
-IFS='|'
-while read -r email password dept pos; do
-	if [[ "$lemail" == "$email" && "$lpassword" == "$password" ]]; then
-		isSuccess=1
-		./HRMenu.sh
-	fi
-done <"$INPUT"
