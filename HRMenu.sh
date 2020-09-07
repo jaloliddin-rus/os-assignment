@@ -10,12 +10,14 @@ echo "R - Performance Review"
 echo
 echo "Q - Quit / Exit from program"
 echo
-echo -n "Please enter your choice: "
-read choice
-case "$choice" in
-[eE]) ./DepartmentSelectionMenu.sh ;;
-[kK]) ./AddNewKPIForm.sh ;;
-[rR]) ./EmpValidationForm.sh ;;
-[qQ]) exit ;;
-*) echo "Invalid Choice!" ;;
-esac
+while true; do
+    echo -n "Please enter your choice: "
+    read choice
+    case "$choice" in
+    [eE]) ./DepartmentSelectionMenu.sh ;;
+    [kK]) ./AddNewKPIForm.sh ;;
+    [rR]) ./EmpValidationForm.sh ;;
+    [qQ]) exit ;;
+    *) echo "Invalid Choice!" ;;
+    esac
+done

@@ -17,8 +17,9 @@ GREEN='\033[0;32m' #green
 startDateValid=$FALSE
 endDateValid=$FALSE
 dateComparisonValid=$FALSE
+icNoValid=$FALSE
 
-isValidDate() {
+function isValidDate() {
 	local date="$1"
 	date "+%m-%Y" -d "$date" >/dev/null 2>&1
 	if [ $? != 0 ]; then
@@ -30,7 +31,7 @@ isValidDate() {
 	fi
 }
 
-dateComparison() {
+function dateComparison() {
 	local startDate="$1"
 	local endDate="$2"
 
@@ -44,6 +45,16 @@ dateComparison() {
 	fi
 }
 
+#function isICValid() {
+#regex="^([[1-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])-([0-9]{2})-([0-9]{4})$"
+#local icNO=$1
+
+#if [[ $icNO =~ "^(([[1-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01]))-([0-9]{2})-([0-9]{4})+$" ]]; then
+#echo $TRUE
+#else
+#echo $FALSE
+#fi
+#}
 
 printf "%-30sEmployee Validation Form\n"
 printf "%-30s-------------------------\n"
@@ -70,8 +81,16 @@ while [[ $startDateValid -eq 1 || $endDateValid -eq 1 || $dateComparisonValid -e
 	fi
 done
 
-echo -n "Plese enter the Employee's IC. Number (xxxxxx-xx-xxxx): "
+#while [[ $icNoValid -eq 1 ]]; do
+printf "Plese enter the Employee's IC. Number (xxxxxx-xx-xxxx): "
 read ICNo
+
+#icNoValid=$(isICValid "$ICNo")
+
+#if [[ $icNoValid -eq 1 ]]; then
+#printf "${RED}Invalid IC Number!${NC}\n"
+#fi
+#done
 
 while IFS=: read -r empDept empICNo empName empPhone empEmail empGender empBirthDate empJobTitle empJoinDate; do
 	if [[ $empICNo == $ICNo ]]; then
