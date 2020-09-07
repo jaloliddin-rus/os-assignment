@@ -71,4 +71,3 @@ while read -r email password dept pos; do
 		./HRMenu.sh
 	fi
 done <"$INPUT"
-#done
