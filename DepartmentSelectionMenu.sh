@@ -8,6 +8,8 @@ GREEN='\033[0;32m' #green
 
 clear
 
+loop=1
+
 echo "Department Selection Menu"
 echo "========================="
 echo
@@ -20,17 +22,41 @@ echo "I - IT (Information Technology Department)"
 echo
 echo "Q - Quit (Return to Human Resource Management Menu)"
 echo
-while true; do
+while [[ $loop -eq 1 ]]; do
     echo -n "Please select a choice : "
     read choice
     case "$choice" in
-    [pP]) ./AddNewEmpForm.sh 'PD' ;;
-    [uU]) ./AddNewEmpForm.sh 'PU' ;;
-    [sS]) ./AddNewEmpForm.sh 'SM' ;;
-    [hH]) ./AddNewEmpForm.sh 'HR' ;;
-    [aA]) ./AddNewEmpForm.sh 'AF' ;;
-    [iI]) ./AddNewEmpForm.sh 'IT' ;;
-    [qQ]) ./HRMenu.sh ;;
-    *) printf "${RED}Invalid Choice!\n${NC}" ;;
+    [pP])
+        ./AddNewEmpForm.sh 'PD'
+        loop=0
+        ;;
+    [uU])
+        ./AddNewEmpForm.sh 'PU'
+        loop=0
+        ;;
+    [sS])
+        ./AddNewEmpForm.sh 'SM'
+        loop=0
+        ;;
+    [hH])
+        ./AddNewEmpForm.sh 'HR'
+        loop=0
+        ;;
+    [aA])
+        ./AddNewEmpForm.sh 'AF'
+        loop=0
+        ;;
+    [iI])
+        ./AddNewEmpForm.sh 'IT'
+        loop=0
+        ;;
+    [qQ])
+        ./HRMenu.sh
+        loop=0
+        ;;
+    *)
+        printf "${RED}Invalid Choice!\n${NC}"
+        loop=1
+        ;;
     esac
 done
