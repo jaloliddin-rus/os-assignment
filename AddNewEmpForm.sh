@@ -1,8 +1,52 @@
 #!/bin/bash
 #author: Harrsimran Kaur
 clear
+
+#constants
+declare -r TRUE=0
+declare -r FALSE=1
+
 #Argument from DepartmentSelectionMenu script
 empDepartment=$1
+
+#variables
+genderValid=$FALSE
+numberValid=$FALSE
+ICValid=$FALSE
+
+function isGenderValid() {
+    regex="^male$|^female$|^Male$|^Female$"
+    local gender="$1"
+
+    if [[ "$gender" =~ $regex ]]; then
+        echo $TRUE
+    else
+        echo $FALSE
+    fi
+
+}
+
+function isNumberValid() {
+    regex="^[0-9]{3}-[0-9]{8}$"
+    local number="$1"
+
+    if [[ "$number" =~ $regex ]]; then
+        echo $TRUE
+    else
+        echo $FALSE
+    fi
+}
+
+function isICNoValid() {
+    regex="^[0-9]{6}-[0-9]{2}-[0-9]{4}$"
+    local ic=$1
+
+    if [[ "$ic" =~ $regex ]]; then
+        echo $TRUE
+    else
+        echo $FALSE
+    fi
+}
 
 loop=y
 
@@ -11,16 +55,49 @@ while [ "$loop" = "y" ]; do
     echo "Add New Employee Form"
     echo "====================="
     echo
-    echo -n "Employee IC. Number (000000-00-0000) : "
-    read empICNo
+
+    while [[ $ICValid -eq 1 ]]; do
+        echo -n "Employee IC. Number (000000-00-0000) : "
+        read empICNo
+
+        ICValid=$(isICNoValid "$empICNo")
+
+        if [[ $ICValid -eq 1 ]]; then
+            echo "Invalid IC Number!"
+        fi
+    done
+
     echo -n "Employee Name (Xxx Xxx) : "
     read empName
-    echo -n "Contact Number (000-000000) : "
-    read empContactNo
+
+    while [[ $numberValid -eq 1 ]]; do
+        echo -n "Contact Number (000-000000) : "
+        read empContactNo
+
+        numberValid=$(isNumberValid "$empContactNo")
+
+        if [[ $numberValid -eq 1 ]]; then
+            echo "Invalid Contact Number!"
+
+        fi
+
+    done
+
     echo -n "Email (test@test.com) : "
     read empEmail
-    echo -n "Gender (Male/Female) : "
-    read empGender
+
+    while [[ $genderValid -eq 1 ]]; do
+        echo -n "Gender (Male/Female) : "
+        read empGender
+
+        genderValid=$(isGenderValid "$empGender")
+
+        if [[ $genderValid -eq 1 ]]; then
+            echo "Invalid Gender!"
+        fi
+
+    done
+
     echo -n "Birth Date (00-00-0000) : "
     read empBirthDate
     echo -n "Job Title : "
