@@ -16,14 +16,35 @@ GREEN='\033[0;32m' #green
 
 #files
 kpiDB="KPI.txt"
-filename="${ICNo}KPIResult"
+filename="${ICNo}KPIResult${startDate}-${endDate}"
+temp="${filename}.txt"
 
 #variables
 loop=y
+overwrite=n
 average=0.0
 totalRate=0
 counter=0
 
+if [[ -f $temp ]]; then
+    printf "${RED}Performance Review of ${GREEN}$empName${NC} ${RED}already exists!\n${NC}"
+
+    while [[ "$overwrite"!="y" ]]; do
+        printf "Would you like to overwrite existing file? (y)es or (n)o: "
+        read choice
+        if [[ "$choice" = "n" ]]; then
+            read -n 1 -r -s -p "Press any key to continue..."
+            ./EmpValidationForm.sh
+        elif [[ "$choice" = "y" ]]; then
+            break
+            overwrite="y"
+        else
+            printf "Please enter either yes or no!"
+        fi
+    done
+
+fi
+printf "" > $filename.txt
 printf '%-50sEmployee Performance Review\n' >>$filename.txt
 printf '%-50s===========================\n\n' >>$filename.txt
 printf 'Employee IC. Number: %s\n' "$ICNo" >>$filename.txt
@@ -37,8 +58,17 @@ while [[ "$loop" = "y" ]]; do
     clear
     echo "Employee Performance Review Form"
     echo "--------------------------------"
-    echo -n "Please enter the KPI Code: "
+
+    printf "Please enter the KPI Code: "
     read kpi
+    tempString='KPI'
+
+    #validation to check length of kpiCode input
+    while [[ "$kpi" != *"$tempString"* ]]; do
+        printf "${RED}KPI Code starts with${NC} ${GREEN}KPI_${NC}\n"
+        printf "Please enter the KPI Code: "
+        read kpi
+    done
 
     #loop to retrieve the kpi criteria based on kpi code
     while IFS=: read -r kpiCode kpiCriteria kpiDesc; do
